@@ -24,11 +24,15 @@ class PdfParser(object):
                         if 'COLOUR' in row[0]:
                             data['color'] = row[1].replace(',', '')
                         elif 'MESH SIZE' in row[0]:
-                            data['meshSize'] = row[1][0:-3]
+                            if '-' in row[1]:
+                                mesh_range = row[1][0:-3].split('-')
+                                data['meshSize'] = float(mesh_range[0])
+                            else:
+                                data['meshSize'] = float(row[1][0:-3])
                         elif 'TWINE SIZE' in row[0]:
-                            data['twineDiameter'] = row[1][0:-3]
+                            data['twineDiameter'] = float(row[1][0:-3])
                         elif 'STRANDS' in row[0]:
-                            data['numberOfStrands'] = row[1].replace(',', '')
+                            data['numberOfStrands'] = int(row[1].replace(',', ''))
                         elif 'ORIGIN*' in row[0]:
                             data['origin'] = row[1].replace(',', '')
                             if data['origin'] == 'Yet to be':
