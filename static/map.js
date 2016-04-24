@@ -14,7 +14,9 @@ function initMap() {
         for (var i = 0; i < results.length; i++) {
             var object = results[i];
             //console.log(object.get('location')['_longitude']);
-            heatmapData.push(new google.maps.LatLng(object.get('location')['_latitude'], object.get('location')['_longitude']))
+            if (object.get('location')) {
+                heatmapData.push(new google.maps.LatLng(object.get('location')['_latitude'], object.get('location')['_longitude']))
+            }
         }
         var sanFrancisco = new google.maps.LatLng(17.774546, -92.433523);
         map = new google.maps.Map(document.getElementById('map'), {
@@ -47,7 +49,10 @@ function reloadLatest(){
       success: function(results) {
       for (var i = 0; i < results.length; i++) {
             var object = results[i];
-            feed_title = 'Reported by ' + object.get('firstName') + ' at ' + object.get('timestamp');
+            timestamp = String(object.get('timestamp'));
+            date = timestamp.substring(0, timestamp.length-23);
+            time = timestamp.substring(timestamp.length-23, timestamp.length-18);
+            feed_title = 'Reported by <em>' + object.get('firstName') + '</em> <br> on ' + date + ' at ' + time;
             $( "#instantFeed" ).append(HTMLtitle.replace("%data%", feed_title));
             if (object.get('overallPhoto')) {
                 $( "#instantFeed" ).append(HTMLimg.replace("%data%", object.get('overallPhoto')['_url']));
@@ -62,3 +67,49 @@ function reloadLatest(){
     });
 }
 reloadLatest();
+
+function donutChart() {
+    var width = 960,
+        height = 500,
+        radius = Math.min(width, height) / 2;
+
+    var color = d3.scale.ordinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(radius - 70);
+
+    var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return d.count; });
+
+    var svg = d3.select("#donutChart").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var data = [{'mesh_size':'<24mm', 'count':'10'}, {'mesh_size':'25-41mm', 'count':'17'}, {'mesh_size':'42-57mm', 'count':'37'},
+        {'mesh_size':'58-75mm', 'count':'58'}, {'mesh_size':'76-94mm', 'count':'42'}, {'mesh_size':'95-124mm', 'count':'22'}]
+
+    var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+    g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.mesh_size); });
+
+    g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.mesh_size; });
+}
+donutChart();
+
+function type(d) {
+  d.count = +d.count;
+  return d;
+}

@@ -1,5 +1,6 @@
 body {
   padding-top: 30px;
+  padding-top: 50px;
 }
 .starter-template {
   padding: 40px 15px;
@@ -36,4 +37,13 @@ body {
 
 .navbar-inverse .navbar-nav>li>a {
   color:#000000;
+}
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
 }
