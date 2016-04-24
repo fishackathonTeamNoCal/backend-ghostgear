@@ -50,8 +50,9 @@ function reloadLatest(){
       for (var i = 0; i < results.length; i++) {
             var object = results[i];
             timestamp = String(object.get('timestamp'));
-            timestamp = timestamp.substring(0, timestamp.length-18);
-            feed_title = 'Reported by <em>' + object.get('firstName') + '</em> at ' + timestamp;
+            date = timestamp.substring(0, timestamp.length-23);
+            time = timestamp.substring(timestamp.length-23, timestamp.length-18);
+            feed_title = 'Reported by <em>' + object.get('firstName') + '</em> <br> on ' + date + ' at ' + time;
             $( "#instantFeed" ).append(HTMLtitle.replace("%data%", feed_title));
             if (object.get('overallPhoto')) {
                 $( "#instantFeed" ).append(HTMLimg.replace("%data%", object.get('overallPhoto')['_url']));
