@@ -34,6 +34,9 @@ body {
 
 .navbar-inverse .navbar-brand {
   color: #000000;
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
 }
 
 .navbar-inverse .navbar-nav>li>a {
