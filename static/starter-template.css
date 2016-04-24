@@ -21,6 +21,11 @@ body {
 }
 
 .feed-img {
-    max-width: 100px;
-    max-height: 100px
+  max-width: 100px;
+  max-height: 100px
+}
+
+.navbar-inverse {
+  background-color: #43BBCA;
+  border-color: #43BBCA;
 }
