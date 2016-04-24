@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .starter-template {
   padding: 40px 15px;
@@ -28,5 +28,12 @@ body {
 .navbar-inverse {
   background-color: #43BBCA;
   border-color: #43BBCA;
+}
 
+.navbar-inverse .navbar-brand {
+  color: #000000;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color:#000000;
 }
