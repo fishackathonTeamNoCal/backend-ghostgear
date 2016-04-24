@@ -57,10 +57,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-9" id="mapDiv">
+          <h2>Heat map of reports</h2>
           <div id="map"></div>
         </div>
         <div class="col-md-3" id="instantFeed">
-          <h3>Latest Sightings</h3>
+          <h3>Latest Reports</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9" id="donutChart">
+          <h2>Break down of mesh sizes</h3>
         </div>
       </div>
 
@@ -81,8 +87,10 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
     <script src="http://www.parsecdn.com/js/parse-1.6.14.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="static/map.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqjr3Xaugl2J2oeQmLFHpYwmhclsusG3s&libraries=visualization&callback=initMap">
+
 </script>
   </body>
 </html>
