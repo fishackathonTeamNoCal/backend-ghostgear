@@ -52,7 +52,7 @@ function reloadLatest(){
             timestamp = String(object.get('timestamp'));
             date = timestamp.substring(0, timestamp.length-23);
             time = timestamp.substring(timestamp.length-23, timestamp.length-18);
-            feed_title = 'Reported by <em>' + object.get('firstName') + '</em> <br> on ' + date + ' at ' + time;
+            feed_title = '<b>Reported by </b><em>' + object.get('firstName') + '</em> <br> on ' + date + ' at ' + time;
             $( "#instantFeed" ).append(HTMLtitle.replace("%data%", feed_title));
             if (object.get('overallPhoto')) {
                 $( "#instantFeed" ).append(HTMLimg.replace("%data%", object.get('overallPhoto')['_url']));
@@ -69,12 +69,12 @@ function reloadLatest(){
 reloadLatest();
 
 function donutChart() {
-    var width = 960,
-        height = 500,
+    var width = 400,
+        height = 400,
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+        .range(["#e6ff56", "#43bbca", "#ff1774", "#62646C", "#ff9b5a", "#3ac1f3", "#7f94f7"]);
 
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
